@@ -1,0 +1,111 @@
+total 344
+-rw-r--r--@ 1 jesse-local  staff   15595 Apr 16 17:21 LICENSE.txt
+-rw-r--r--@ 1 jesse-local  staff   26656 Apr 16 17:28 README.docx
+-rw-r--r--@ 1 jesse-local  staff  123947 Apr 16 17:29 README.pdf
+drwxr-xr-x@ 5 jesse-local  staff     160 Apr 16 11:12 external
+-rw-r--r--@ 1 jesse-local  staff       0 Apr 16 17:30 filelisting.txt
+drwxr-xr-x@ 7 jesse-local  staff     224 Apr 16 10:54 internal
+-rw-r--r--@ 1 jesse-local  staff     162 Apr 16 17:21 ~$README.docx
+
+./external:
+total 0
+drwxr-xr-x@ 12 jesse-local  staff  384 Apr 16 17:30 code
+drwxr-xr-x@  4 jesse-local  staff  128 Apr 16 11:49 disclosed
+drwxr-xr-x@ 23 jesse-local  staff  736 Apr 16 11:29 results
+
+./external/code:
+total 160
+-rw-r--r--@ 1 jesse-local  staff   2937 Apr 16 11:28 fig1.do
+-rw-r--r--@ 1 jesse-local  staff   1038 Apr 16 11:25 fig2.do
+-rw-r--r--@ 1 jesse-local  staff   5038 Apr 16 11:28 figA1.do
+-rw-r--r--@ 1 jesse-local  staff   5642 Apr 16 11:24 figA2.do
+-rw-r--r--@ 1 jesse-local  staff   2079 Apr 16 11:21 figA3.do
+-rw-r--r--@ 1 jesse-local  staff    890 Apr 16 11:22 figA4.do
+-rw-r--r--@ 1 jesse-local  staff    113 Apr 16 11:27 publicmaster.do
+-rw-r--r--@ 1 jesse-local  staff  11089 Apr 16 11:16 table1.xlsx
+-rw-r--r--@ 1 jesse-local  staff  13578 Apr 16 17:30 tableA1.xlsx
+-rw-r--r--@ 1 jesse-local  staff  14033 Apr 16 11:44 tableA5.xlsx
+
+./external/disclosed:
+total 160
+-rw-r--r--@ 1 jesse-local  staff  21429 Nov  6 17:11 Yi_tabs_T13T26_1.xlsx
+-rw-r--r--@ 1 jesse-local  staff  54305 Feb 21 00:06 Yi_tabs_T13T26_2.xlsx
+
+./external/results:
+total 8720
+-rw-r--r--@ 1 jesse-local  staff   41349 Apr 16 11:29 fig1-combined.gph
+-rw-r--r--@ 1 jesse-local  staff  472554 Apr 16 11:29 fig1-combined.png
+-rw-r--r--@ 1 jesse-local  staff   10882 Apr 16 11:29 fig1-panelA.gph
+-rw-r--r--@ 1 jesse-local  staff  336703 Apr 16 11:29 fig1-panelA.png
+-rw-r--r--@ 1 jesse-local  staff   10383 Apr 16 11:29 fig1-panelB.gph
+-rw-r--r--@ 1 jesse-local  staff  312295 Apr 16 11:29 fig1-panelB.png
+-rw-r--r--@ 1 jesse-local  staff   10343 Apr 16 11:29 fig1-panelC.gph
+-rw-r--r--@ 1 jesse-local  staff  325848 Apr 16 11:29 fig1-panelC.png
+-rw-r--r--@ 1 jesse-local  staff   10358 Apr 16 11:29 fig1-panelD.gph
+-rw-r--r--@ 1 jesse-local  staff  305158 Apr 16 11:29 fig1-panelD.png
+-rw-r--r--@ 1 jesse-local  staff   17608 Apr 16 11:29 fig2.gph
+-rw-r--r--@ 1 jesse-local  staff  340161 Apr 16 11:29 fig2.png
+-rw-r--r--@ 1 jesse-local  staff   87922 Apr 16 11:29 figA1.gph
+-rw-r--r--@ 1 jesse-local  staff  512627 Apr 16 11:29 figA1.png
+-rw-r--r--@ 1 jesse-local  staff   24720 Apr 16 11:29 figA2.gph
+-rw-r--r--@ 1 jesse-local  staff  380320 Apr 16 11:29 figA2.png
+-rw-r--r--@ 1 jesse-local  staff   72384 Apr 16 11:29 figA3.gph
+-rw-r--r--@ 1 jesse-local  staff  638497 Apr 16 11:29 figA3.png
+-rw-r--r--@ 1 jesse-local  staff   26568 Apr 16 11:29 figA4.gph
+-rw-r--r--@ 1 jesse-local  staff  478867 Apr 16 11:29 figA4.png
+-rw-r--r--@ 1 jesse-local  staff    2868 Apr 16 11:29 tableA4_lehd.xlsx
+
+./internal:
+total 32
+-rw-r--r--@  1 jesse-local  staff   306 Apr 15 12:04 00_directories.do
+-rw-r--r--@  1 jesse-local  staff  1703 Apr 16 11:03 00_run_all.do
+drwxr-xr-x@ 17 jesse-local  staff   544 Apr 16 10:33 analysis
+drwxr-xr-x@ 13 jesse-local  staff   416 Apr 16 10:33 build
+-rw-r--r--@  1 jesse-local  staff  7861 Apr 16 10:54 notes.txt
+
+./internal/analysis:
+total 128
+-rw-r--r--@ 1 jesse-local  staff  3562 Apr 15 12:04 akmdecomp.do
+-rw-r--r--@ 1 jesse-local  staff  2438 Apr 15 12:04 commutedensity.do
+-rw-r--r--@ 1 jesse-local  staff   776 Apr 15 12:04 commutedist.do
+-rw-r--r--@ 1 jesse-local  staff  3152 Apr 15 12:04 commutedistn.do
+drwxr-xr-x@ 7 jesse-local  staff   224 Apr 16 10:33 figures
+-rw-r--r--@ 1 jesse-local  staff  6258 Apr 15 12:04 firmsizedecomp.do
+-rw-r--r--@ 1 jesse-local  staff  5566 Apr 15 12:04 gridcorrs.R
+-rw-r--r--@ 1 jesse-local  staff   460 Apr 15 12:04 gridcorrtable.do
+-rw-r--r--@ 1 jesse-local  staff  4310 Apr 15 12:04 gridmult.R
+-rw-r--r--@ 1 jesse-local  staff   457 Apr 15 12:04 gridmulttable.do
+-rw-r--r--@ 1 jesse-local  staff  2720 Apr 15 12:04 multiestab_commutedist.do
+-rw-r--r--@ 1 jesse-local  staff  2626 Apr 15 12:04 psi_commute.do
+-rw-r--r--@ 1 jesse-local  staff  1185 Apr 15 12:04 sub_makeczgps.do
+-rw-r--r--@ 1 jesse-local  staff  1921 Apr 15 12:04 summstats.do
+drwxr-xr-x@ 6 jesse-local  staff   192 Apr 16 10:33 tables
+
+./internal/analysis/figures:
+total 48
+-rw-r--r--@ 1 jesse-local  staff  6568 Apr 15 12:04 fig_accessgraphs.do
+-rw-r--r--@ 1 jesse-local  staff   458 Apr 15 12:04 fig_commutedensity.do
+-rw-r--r--@ 1 jesse-local  staff   669 Apr 15 12:04 fig_commutedistn.do
+-rw-r--r--@ 1 jesse-local  staff  1777 Apr 15 12:04 fig_multiestab.do
+-rw-r--r--@ 1 jesse-local  staff   692 Apr 15 12:04 fig_psi_commute.do
+
+./internal/analysis/tables:
+total 32
+-rw-r--r--@ 1 jesse-local  staff  2010 Apr 15 12:04 AKMsummary.do
+-rw-r--r--@ 1 jesse-local  staff  3390 Apr 15 12:04 bwdecomp.do
+-rw-r--r--@ 1 jesse-local  staff  2546 Apr 15 12:04 commutedensity_origsamp.do
+-rw-r--r--@ 1 jesse-local  staff  2188 Apr 15 12:04 elasticities.do
+
+./internal/build:
+total 152
+-rw-r--r--@ 1 jesse-local  staff   5938 Apr 15 12:04 0a_mig5_clean1_bw.sas
+-rw-r--r--@ 1 jesse-local  staff   4990 Apr 15 12:04 0b_mig5_clean2_bw.do
+-rw-r--r--@ 1 jesse-local  staff   1268 Apr 15 12:04 1_czlist.do
+-rw-r--r--@ 1 jesse-local  staff   5232 Apr 15 12:04 2_prepresidlocs.sas
+-rw-r--r--@ 1 jesse-local  staff   7710 Apr 15 12:04 3_runakm.do
+-rw-r--r--@ 1 jesse-local  staff   2152 Apr 15 12:04 4_makesamp.do
+-rw-r--r--@ 1 jesse-local  staff   9194 Apr 15 12:04 5_makegrid.do
+-rw-r--r--@ 1 jesse-local  staff    343 Apr 15 12:04 6_multiestab_makelist.do
+-rw-r--r--@ 1 jesse-local  staff   1120 Apr 15 12:04 7_firmsize.do
+-rw-r--r--@ 1 jesse-local  staff  12077 Apr 15 12:04 akm_pcg.m
+-rw-r--r--@ 1 jesse-local  staff   2556 Apr 15 12:04 firmAKM_callable.m

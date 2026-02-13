@@ -1,0 +1,250 @@
+Replication Package Notes
+
+Note: Directories need to be set in the directories program (00_directories.do), two sas files (0a_mig5_clean1_bw.sas, 2_prepresidlocs.sas), one Matlab file (firmAKM_callable.m), and two R files (gridmult.R & gridcorrs.R)
+
+BUILD
+---------------------------------------------------------------------------------
+0a_mig5_clean1_bw.sas
+  Cleans raw LEHD and ACS files
+  Uses: 
+	${emp_data}/jhf_interleave
+	${emp_data}/ecf_seinunit_interleave
+	${icf_data}/icf_us
+	&acspath/2001/vpers2001_1yr.sas7bdat
+	&acspath/2002/vpers2002_1yr.sas7bdat
+	&acspath/2003/vpers2003_1yr.sas7bdat
+	&acspath/2004/vpers2004_1yr.sas7bdat
+	&acspath/2005/vpers2005_1yr.sas7bdat
+	&acspath/2006/vpers2006_1yr.sas7bdat
+	&acspath/2007/vpers2007_1yr.sas7bdat
+	&acspath/2008/vpers2008_1yr.sas7bdat
+	&acspath/2009/vpers2009_1yr.sas7bdat
+	&acspath/2010/vpers2010_1yr.sas7bdat
+	&acspath/2011/vpers2011_1yr.sas7bdat
+	&acspath/2012/vpers2012_1yr.sas7bdat
+	&acspath/2013/vpers2013_1yr.sas7bdat
+	&acspath/2014/vpers2014_1yr.sas7bdat
+	&acspath/2015/vpers2015_1yr.sas7bdat
+	&acspath/2016/acs2016_vpers_1yr.sas7bdat
+	&acspath/2017/acs2017_vpers_1yr.sas7bdat
+	&acsxwpath/2001/crosswalk_acs2001.sas7bdat
+	&acsxwpath/2002/crosswalk_acs2002.sas7bdat
+	&acsxwpath/2003/crosswalk_acs2003.sas7bdat
+	&acsxwpath/2004/crosswalk_acs2004.sas7bdat
+	&acsxwpath/2005/crosswalk_acs2005.sas7bdat
+	&acsxwpath/2006/crosswalk_acs2006.sas7bdat
+	&acsxwpath/2007/crosswalk_acs2007.sas7bdat
+	&acsxwpath/2008/crosswalk_acs2008.sas7bdat
+	&acsxwpath/2009/crosswalk_acs2009.sas7bdat
+	&acsxwpath/2010/crosswalk_acs2010.sas7bdat
+	&acsxwpath/2011/crosswalk_acs2011.sas7bdat
+	&acsxwpath/2012/crosswalk_acs2012.sas7bdat
+	&acsxwpath/2013/crosswalk_acs2013.sas7bdat
+	&acsxwpath/2014/crosswalk_acs2014.sas7bdat
+	&acsxwpath/2015/crosswalk_acs2015.sas7bdat
+	&acsxwpath/2016/crosswalk_acs2016.sas7bdat
+	&acsxwpath/2017/crosswalk_acs2017.sas7bdat
+  Produces:
+	${raw_data}/phftemp_akm.dta
+	${raw_data}/m5_icf_dob.dta 
+	${raw_data}/m5_ecf_seinunit.dta
+	${raw_data}/m5_piklist_educacs.dta
+
+0b_mig5_clean2_bw.do
+  Cleans LEHD and ACS files
+  Uses:
+	${raw_data}/phftemp_akm.dta
+	${raw_data}/m5_icf_dob.dta 
+	${icf_data}/icf_us.sas7bdat
+  Produces:
+	${raw_data}/mig5_pikqtime_1022.dta 
+		
+	
+1_czlist.do
+  Makes a list of CZs with sizes
+  Uses: ${raw_data}/mig5_pikqtime_1022.dta
+  Produces: ${processed_data}/1_czlist.dta
+
+
+2_prepresidlocs.sas
+  Makes data files for each CZ with variables needed to run AKM plus residential and work locations
+  Uses:
+    ${processed_data}/1_czlist.dta
+    ${raw_data}/cw_cty_czone.dta (Note: Looks to be hand-edited for Miami/Colorado)
+    ${res_data}/icf_us_residence_cpr 
+    ${res_data}/icf_us_residence_rcf
+    ${emp_data}/ecf_seinunit_interleave
+    ${raw_data}/mig5_pikqtime_1022.dta
+  Produces: 
+    ${processed_data}/CZfiles/bwobs_cz????? (17 Paper Czs)
+
+
+3_runakm.do
+  Runs AKM, CZ by CZ
+  Calls:
+    ${home_dir}/build/firmAKM_callable.m
+    ${home_dir}/build/akm_pcg.m
+    Also relies on the Matlab BGL package, in a folder designated in firm_AKM_callable.m
+  Uses:
+    ${processed_data}/1_czlist.dta
+    ${processed_data}/CZfiles/bwobs_cz????? (17 Paper Czs)
+  Produces:
+    ${processed_data}/akmoutput/AKMests_?????.dta (17 Paper CZs)
+    ${processed_data}/akmoutput/AKMstats.dta
+
+4_makesamp.do 
+  Makes base individual sample
+  Uses:
+    ${processed_data}/1_czlist.dta
+    ${processed_data}/CZfiles/bwobs_cz????? (17 Paper Czs)
+    ${output}/akmoutput/AKMests_?????.dta (17 Paper Czs)
+    ${output}/akmoutput/AKMstats.dta
+    ${raw_data}/m5_piklist_educacs.dta
+  Produces:
+    ${processed_data}/grids/inddata_cz????.dta (17 Paper Czs)
+
+
+5_makegrid.do 
+  Assigns observations to grids and makes grid-point datasets
+  Uses:
+    ${processed_data}/1_czlist.dta
+    ${processed_data}/grids/inddata_cz????.dta (17 Paper Czs)
+    ${output}/akmoutput/AKMstats.dta
+  Produces:
+    ${processed_data}/grid_cz???? (17 Paper CZs - limited to AKM sample)
+
+6_multiestab_makelist.do
+  Makes a list of SEINs with multiple establishments (at any time)
+  Uses:
+    ${raw_data}/m5_ecf_seinunit
+  Produces:
+    ${processed_data}/multiestab_makelist.dta
+
+7_firmsize.do
+ Creates firm sizes defined by the sum of white non-hispanic, black non-hispanic, and hispanic workers (at any time)
+ Uses:
+   ${raw_data}/mig5_pikqtime_1022.dta
+ Produces:
+   ${processed_data}/firmsize.dta
+ 
+
+
+ANALYSIS
+-----------------------------------------------
+
+commutedist.do
+  Computes quantiles of commute distance by CZ
+  Uses:
+    ${processed_data}/grids/inddata_cz????.dta
+  Creates:
+    ${processed_data}/commutedist.dta
+ 
+akmdecomp.do
+  Decomposes the B-W and H-W gap in earnings, and computes variance decompositions
+  Uses:
+    ${output}/akmoutput/AKMests_?????.dta
+    ${output}/akmoutput/AKMstats.dta
+    ${processed_data}/grids/inddata_cz????.dta
+  Produces:
+    ${processed_data}/akmdecomp.dta
+
+gridmult.R (1.5 hrs)
+  Makes summaries of means of Y variables within various radii of X observations
+  Uses:
+    ${processed_data}/1_czlist.dta
+    ${processed_data}/commutedist.dta
+    ${processed_data}/grid_cz????.dta
+  Produces:
+    ${processed_data}/gridmult.dta
+
+gridmulttable.do 
+  Makes a table of CZ group means from gridmult.
+  Uses:
+    ${processed_data}/gridmult.dta
+  Produces:
+    ${output}/gridmulttable.dta
+
+summstats.do
+  Summary statistics by race and CZ group
+  Uses:
+    ${processed_data}/1_czlist.dta
+    ${processed_data}/grids/inddata_cz????.dta
+  Creates:
+    ${output}/summstats.dta
+    ${output}/summstats.xls
+
+psi_commute.do 
+  Average firm psi by commute distance and race, by CZ group
+  Uses: 
+    ${processed_data}/1_czlist.dta
+    ${processed_data}/grids/inddata_cz????.dta
+  Creates: 
+    ${processed_data}/psi_commute_czlevel.dta
+    ${output}/psi_commute_groups.dta 
+
+commutedistn.do
+  Distribution of commute distance by race and alpha, by CZ group
+  Uses: 
+    ${processed_data}/1_czlist.dta
+    ${processed_data}/grids/inddata_cz????.dta
+  Creates: 
+    ${processed_data}commutedistn_czlevel.dta
+    ${output}/commutedistn_groups.dta 
+    ${output}/commutedistn_counts.dta
+
+commutedensity.do
+  Kernel density of commute distance by race, gender, and CZ group
+  Uses:
+    ${processed_data}/1_czlist.dta
+    ${processed_data}/grids/inddata_cz????.dta
+  Creates:
+   ${output}/commutedensity.dta
+
+firmsizedecomp.do
+  Decomposition by firm size, race, gender, and CZ group
+  Uses:
+    ${processed_data}/1_czlist.dta
+    ${processed_data}/grids/inddata_cz????.dta
+  Creates:
+    ${output}/firmsizedecomp.dta
+
+multiestab_commutedist.do
+  Average firm psi by commute distance, race, and firm # of establishments, by CZ group
+  Uses:
+    ${processed_data}/1_czlist.dta
+    ${processed_data}/grids/inddata_cz????.dta
+    ${processed_data}/multiestab_makelist.dta
+  Creates:
+    ${processed_data}/multiestab_commutedist_czlevel.dta
+    ${output}/multiestab_commutedist_groups.dta
+
+gridcorrs.R 
+  Measures correlations among characteristics of residents at a grid point and those of jobs near that point.
+  Uses:
+    ${processed_data}/1_czlist.dta
+    ${processed_data}/grid_cz????.dta
+  Produces:
+    ${processed_data}/gridcorrs.dta
+ 
+
+gridcorrtable.do 
+  Makes a table of the correlations from gridcorrs.
+  Uses:
+    ${output}/gridcorrs.dta
+  Produces:
+    ${output}/gridcorrtable.dta
+
+
+
+FIGURES
+fig_accessgraphs.do (Figure 1 & Figure A-1) 
+fig_psi_commute.do (Figure 2) 
+fig_commutedensity.do (Figure A-2 - converted to CDFs outside RDC) 
+fig_commutedistn.do (Figure A-4) 
+fig_multiestab.do (Figure A-3)- (differs slightly from original paper)
+
+Tables
+bwdecomp.do -> AKMsummary.do (Table 1 & Table A-1)
+commutedensity_origsamp.do (Table A-4) 
+elasticities.do (Table A-5)
+
